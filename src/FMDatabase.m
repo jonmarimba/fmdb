@@ -689,6 +689,11 @@
             NSLog(@"Error calling sqlite3_step (%d: %s) SQLITE_MISUSE", rc, sqlite3_errmsg(db));
             NSLog(@"DB Query: %@", sql);
         }
+        else if (SQLITE_CONSTRAINT == rc) {
+            // constraint problem
+            NSLog(@"Error calling sqlite3_step (%d: %s) SQLITE_CONSTRAINT", rc, sqlite3_errmsg(db));
+            NSLog(@"DB Query: %@ argsArray:%@", sql, arrayArgs);
+        }
         else {
             // wtf?
             NSLog(@"Unknown error calling sqlite3_step (%d: %s) eu", rc, sqlite3_errmsg(db));
